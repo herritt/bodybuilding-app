@@ -1,0 +1,13 @@
+{
+	"name": "bodybuilding-app",
+	"version": "1.0.0",
+	"scripts": {
+		"start": "concurrently \"npm run backend\" \"npm run frontend\"",
+		"frontend": "cd frontend && npm start",
+		"backend": "nodemon backend/server.js"
+	},
+	"dependencies": {
+		"concurrently": "^8.2.2",
+		"nodemon": "^3.0.3"
+	}
+}
