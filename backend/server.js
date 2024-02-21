@@ -12,7 +12,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/calculatePlates", (req, res) => {
-	console.log("req.body:", req.body);
 	let plates = calculatePlate(req.body.weight);
 	res.json({ plates: plates });
 });

@@ -35,11 +35,23 @@ function PlateCalculator() {
 
 	return (
 		<div className="plate-calculator">
-			<input type="text" value={weight} onChange={(e) => setWeight(e.target.value)} />
-			<button onClick={handleCalculatePlates}>Calculate Plates</button>
-			<div>
+			<div className="plate-calculator-user-input">
+				<input type="text" value={weight} onChange={(e) => setWeight(e.target.value)} />
+				<button onClick={handleCalculatePlates}>Calculate Plates</button>
+			</div>
+			<div className="plates-container">
 				{plates.map((plate, index) => {
-					return <div key={index}>{plate}</div>;
+					let className = "";
+
+					if (plate >= 35) className = "large-plate";
+					else if (plate >= 10) className = "medium-plate";
+					else className = "small-plate";
+
+					return (
+						<div key={index} className={className}>
+							{plate}
+						</div>
+					);
 				})}
 			</div>
 		</div>
