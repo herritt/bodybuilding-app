@@ -1,10 +1,11 @@
 import "./App.css";
+import { PlateCalculator } from "./components";
 
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<p>Frontend is running.</p>
+				<PlateCalculator />
 			</header>
 		</div>
 	);
