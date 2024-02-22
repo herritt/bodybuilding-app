@@ -1,10 +1,12 @@
 .plates-container {
 	display: flex;
 	min-height: 50vh;
+	justify-content: center;
+	align-items: center;
 }
 
 .plates-container > div {
-	margin: 10px 1px;
+	margin: 5px 1px;
 	color: black;
 	border: 1px solid black;
 	border-radius: 15px;
@@ -17,7 +19,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-bottom: 5em;
+	margin-bottom: 1em;
 }
 
 .plate-calculator-user-input > input {
@@ -30,7 +32,6 @@
 }
 
 .plate-calculator-user-input > button {
-	margin-bottom: 1em;
 	padding: 0.5em 1em;
 	border-radius: 5px;
 }
