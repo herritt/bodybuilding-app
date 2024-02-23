@@ -1,6 +1,6 @@
 import "./App.css";
-import { Header, PlateCalculator } from "./components";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Header, PlateCalculator, PlateInventory } from "./components";
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
 	return (
@@ -11,7 +11,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Link to="/plate-calculator" />} />
 				<Route path="/plate-calculator" element={<PlateCalculator />} />
-				<Route path="/plate-inventory" element={<h1>Plate Inventory</h1>} />
+				<Route path="/plate-inventory" element={<PlateInventory />} />
 			</Routes>
 		</div>
 	);

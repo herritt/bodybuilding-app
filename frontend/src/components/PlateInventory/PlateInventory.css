@@ -1,0 +1,64 @@
+.plate-inventory-form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 1em;
+}
+
+.plate-inventory-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 2em;
+	justify-content: center;
+	align-items: center;
+}
+
+.plate-inventory-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 10px;
+}
+
+.weight-circle {
+	display: flex;
+	line-height: 30px;
+	border-radius: 50%;
+	background-color: #000;
+	color: #fff;
+	margin-right: 5px;
+	padding: 0.5em;
+	width: 2em;
+	height: 2em;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.plate-count-adjust {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.plate-count-adjust button {
+	width: 30px;
+	height: 30px;
+	flex-shrink: 0;
+}
+
+.plate-count-adjust input {
+	width: 60px;
+	text-align: center;
+	flex-shrink: 0;
+}
+
+.save-inventory-button {
+	font-size: 1.25em;
+	padding: 0.25em 1em;
+	width: max-content;
+	margin: 0.25em auto;
+	border-radius: 0.5em;
+	box-shadow: 0px 0px 25px 0.5px rgba(0, 0, 0, 0.8);
+}
