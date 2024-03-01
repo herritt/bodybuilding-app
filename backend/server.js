@@ -6,6 +6,7 @@ const port = process.env.SERVER_PORT || 3001;
 const { calculatePlate } = require("./utils/Calculator");
 const passport = require("passport");
 const mongoose = require("mongoose");
+const routes = require("./routes");
 
 mongoose
 	.connect(process.env.MONGO_DB_URL)
@@ -13,6 +14,7 @@ mongoose
 	.catch((err) => console.log(err));
 
 app.use(express.json());
+app.use(routes);
 
 app.get("/", (req, res) => {
 	res.send("Hello World!");
