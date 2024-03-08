@@ -14,9 +14,10 @@ passport.use(
 		function (accessToken, refreshToken, profile, cb) {
 			// Here, you would find or create a user in your database
 			// and pass the user to the cb (callback)
-			User.findOrCreate({ googleId: profile.id }, function (err, user) {
-				return cb(err, user);
-			});
+			// User.findOrCreate({ googleId: profile.id }, function (err, user) {
+			// 	return cb(err, user);
+			// });
+			console.log("Google profile: ", profile);
 		}
 	)
 );
@@ -38,3 +39,5 @@ passport.use(
 // 		}
 // 	)
 // );
+
+module.exports = passport;

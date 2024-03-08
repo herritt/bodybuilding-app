@@ -1,5 +1,5 @@
 import "./App.css";
-import { Header, PlateCalculator, PlateInventory } from "./components";
+import { Header, PlateCalculator, PlateInventory, SignUp } from "./components";
 import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
 				<Route path="/" element={<Link to="/plate-calculator" />} />
 				<Route path="/plate-calculator" element={<PlateCalculator />} />
 				<Route path="/plate-inventory" element={<PlateInventory />} />
+				<Route path="/sign-up" element={<SignUp />} />
 			</Routes>
 		</div>
 	);
