@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDumbbell, faCircleNotch, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { useUser } from "../../UserContext";
 
 function Header() {
+	const { user } = useUser();
+
 	return (
 		<header>
 			<nav>
@@ -19,11 +22,16 @@ function Header() {
 							<FontAwesomeIcon icon={faCircleNotch} /> Plate Inventory
 						</Link>
 					</li>
-					<li>
-						<Link to="/sign-up">
-							<FontAwesomeIcon icon={faUserPlus} /> Sign Up
-						</Link>
-					</li>
+
+					{user ? (
+						<div className="user">Welcome, {user.displayName}</div>
+					) : (
+						<li>
+							<Link to="/sign-up">
+								<FontAwesomeIcon icon={faUserPlus} /> Sign In
+							</Link>
+						</li>
+					)}
 				</ul>
 			</nav>
 		</header>

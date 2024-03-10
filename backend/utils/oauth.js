@@ -11,16 +11,46 @@ passport.use(
 			clientSecret: process.env.OAUTH_GOOGLE_CLIENT_SECRET,
 			callbackURL: process.env.OAUTH_GOOGLE_CALLBACK_URL,
 		},
-		function (accessToken, refreshToken, profile, cb) {
-			// Here, you would find or create a user in your database
-			// and pass the user to the cb (callback)
-			// User.findOrCreate({ googleId: profile.id }, function (err, user) {
-			// 	return cb(err, user);
-			// });
-			console.log("Google profile: ", profile);
+		async function (accessToken, refreshToken, profile, cb) {
+			try {
+				let user = await User.findOne({ googleId: profile.id });
+				if (!user) {
+					// Split the displayName to attempt to get first and last names
+					// This is a basic split and might not work perfectly for all names
+					let names = profile.displayName.split(" ");
+					let firstName = names[0] || "";
+					let lastName = names.slice(1).join(" ") || "";
+
+					// Create the user with the correct mapping
+					user = await User.create({
+						googleId: profile.id,
+						displayName: profile.displayName,
+						firstName: firstName,
+						lastName: lastName,
+						email: profile.emails[0].value,
+						profilePicture: profile.photos[0].value, // Assuming the profile picture URL is stored here
+					});
+				}
+				cb(null, user);
+			} catch (err) {
+				cb(err);
+			}
 		}
 	)
 );
+
+passport.serializeUser((user, done) => {
+	done(null, user._id); // Use MongoDB's _id for session
+});
+
+passport.deserializeUser(async (id, done) => {
+	try {
+		const user = await User.findById(id); // Find user by MongoDB's _id
+		done(null, user);
+	} catch (err) {
+		done(err);
+	}
+});
 
 // const FacebookStrategy = require("passport-facebook").Strategy;
 

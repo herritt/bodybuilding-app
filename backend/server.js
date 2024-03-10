@@ -15,7 +15,6 @@ mongoose
 	.catch((err) => console.log(err));
 
 app.use(express.json());
-app.use(routes);
 
 app.use(
 	session({
@@ -27,6 +26,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(routes);
 
 app.get("/", (req, res) => {
 	res.send("Hello World!");
@@ -37,16 +37,14 @@ app.post("/api/calculatePlates", (req, res) => {
 	res.json({ plates: plates });
 });
 
-app.get("/auth/google", passport.authenticate("google", { scope: ["profile"] }));
-
-app.get(
-	"/auth/google/callback",
-	passport.authenticate("google", { failureRedirect: "/login" }),
-	function (req, res) {
-		// Successful authentication, redirect home.
-		res.redirect("/");
+app.get("/api/current_user", (req, res) => {
+	if (req.isAuthenticated()) {
+		// Check if the user is authenticated
+		res.send({ user: req.user, loggedIn: true });
+	} else {
+		res.send({ loggedIn: false });
 	}
-);
+});
 
 app.listen(port, () => {
 	console.log(`Server listening at http://localhost:${port}`);

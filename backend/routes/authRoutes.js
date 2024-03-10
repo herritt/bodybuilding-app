@@ -14,12 +14,12 @@ router.get(
 
 // Callback route that Google will redirect to after successful authentication
 router.get(
-	"/auth/google/callback",
-	passport.authenticate("google", { failureRedirect: "/login" }),
+	"/google/callback",
+	passport.authenticate("google", { failureRedirect: "http://localhost:3000/sign-up" }),
 	function (req, res) {
 		// Successful authentication, redirect home or to another page
 		console.log("Signed in with Google");
-		res.redirect("/");
+		res.redirect("http://localhost:3000/");
 	}
 );
 
