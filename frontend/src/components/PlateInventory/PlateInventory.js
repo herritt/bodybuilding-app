@@ -1,7 +1,10 @@
 import "./PlateInventory.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useUser } from "../../UserContext";
 
 const PlateInventorySelector = () => {
+	const { user } = useUser();
+
 	// Define the order and initial counts separately
 	const plateWeights = [
 		0.25, 0.5, 0.75, 1, 1.25, 2.5, 5, 7.5, 10, 15, 20, 25, 30, 35, 45, 50, 55, 100,
@@ -54,9 +57,13 @@ const PlateInventorySelector = () => {
 					</div>
 				))}
 			</div>
-			<button className="save-inventory-button" type="submit">
-				Save Inventory
-			</button>
+			{user ? (
+				<button className="save-inventory-button" type="submit">
+					Save Inventory
+				</button>
+			) : (
+				<div>Please sign in to save your inventory</div>
+			)}
 		</form>
 	);
 };
